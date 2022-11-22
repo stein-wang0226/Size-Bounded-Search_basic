@@ -45,7 +45,7 @@ class VertexSet {
 public class OriGraph {
     Integer num;
 
-    int MinDregree,Maxdegree;
+    int MinDregree,MaxDegree;
     Vertex [] vertices  ;
     VertexSet U;
     HashMap <Integer,Vertex>Id2Vex;
@@ -61,11 +61,11 @@ public class OriGraph {
         //input
     }
     void CalDegree(){ // 计算每个点原图度数
-        MinDregree=Maxdegree=Graph.get(vertices[0]).Size();
+        MinDregree=MaxDegree=Graph.get(vertices[0]).Size();
         for(Vertex v:U.Hset){
             v.degree=Graph.get(v).Hset.size();
             MinDregree=Math.min(MinDregree,v.degree);
-            Maxdegree=Math.max(Maxdegree,v.degree);
+            MaxDegree=Math.max(MaxDegree,v.degree);
         }
 
     }

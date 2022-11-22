@@ -55,6 +55,15 @@ public SC_Enum(int q, int l, int h){
             Kmin=DminC;
             H=C;
         }
+        if(C.Size()<h&&R.Size()>0){
+            for(Vertex v: R.Hset){
+                VertexSet C_ = C,R_ =R;
+                C_.Add(v);
+                R_.DelV(v);
+                dfs(C_,R_);
+                dfs(C,R);
+            }
+        }
 
     }
 
