@@ -1,7 +1,4 @@
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Set;
+import java.util.*;
 
 
 public class Main {
@@ -11,9 +8,7 @@ public class Main {
         st0.add(5-i);
     }
     Set<Integer> st=new TreeSet<Integer>(st0);
-    for(int u:st){
-        System.out.println(u);
-    }
+        Iterator<Integer> it=st.iterator();
 
     }
 }

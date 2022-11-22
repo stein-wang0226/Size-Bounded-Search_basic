@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
-
 class Vertex implements Comparable<Vertex> {
     int id;
     int degree;
@@ -41,9 +40,8 @@ class VertexSet {
     }
     public void  UpdateTset() { // 若一直只对Hset操作
         Tset = new TreeSet<>(Hset);
-    }
+    }//
 }
-
 public class OriGraph {
     Integer num;
 
@@ -60,20 +58,24 @@ public class OriGraph {
         U = new VertexSet();
     }
     void DataReader(){
-
+        //input
     }
-    void CalDegree(){
+    void CalDegree(){ // 计算每个点原图度数
+        MinDregree=Maxdegree=Graph.get(vertices[0]).Size();
         for(Vertex v:U.Hset){
             v.degree=Graph.get(v).Hset.size();
+            MinDregree=Math.min(MinDregree,v.degree);
+            Maxdegree=Math.max(Maxdegree,v.degree);
         }
+
     }
 
-    int cn(Vertex q){ // k-core
+    int cn(Vertex q){ // k-core 计算
 
     return 0;
     }
 
-    void DelFromG(Vertex v){
+    void DelFromG(Vertex v){//从图中删除
         Graph.remove(v);
         U.DelV(v);
         num--;
