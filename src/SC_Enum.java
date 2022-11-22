@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 public class SC_Enum {
@@ -49,7 +51,7 @@ public SC_Enum(int q, int l, int h){
         }
     }
 
-    void dfs(VertexSet C, VertexSet R){
+    void dfs( VertexSet C, VertexSet R){
         int DminC= C.Tset.iterator().next().degree;// C中最小度
         if(C.Size()>=l&&C.Size()<=h&&DminC>Kmin){
             Kmin=DminC;

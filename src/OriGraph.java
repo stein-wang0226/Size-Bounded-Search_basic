@@ -1,6 +1,5 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.TreeSet;
+import java.util.*;
+
 class Vertex implements Comparable<Vertex> {
     int id;
     int degree;
@@ -46,11 +45,12 @@ public class OriGraph {
     Integer num;
 
     int MinDregree,MaxDegree;
-    Vertex [] vertices  ;
+    Vertex [] vertices;
     VertexSet U;
+
     HashMap <Integer,Vertex>Id2Vex;
     HashMap<Vertex, VertexSet> Graph;
-    HashMap<Integer,Integer>CoreNumber;
+    HashMap<Vertex,Integer>CoreNumber; // cn[q]的值
     public OriGraph(int n) {
         num = n;
         vertices = new Vertex[n];
@@ -67,23 +67,52 @@ public class OriGraph {
             MinDregree=Math.min(MinDregree,v.degree);
             MaxDegree=Math.max(MaxDegree,v.degree);
         }
-
     }
 
-    int cn(Vertex q){ // k-core 计算
+    void CalAllCN(){ // 计算所有k-core
+        Vertex [] vertices1 = vertices;
+        HashMap<Vertex , VertexSet>G=Graph;
+        Queue<Vertex>que= new LinkedList<>() ;//
+        HashSet<Vertex>rest;//剩余点
+        rest=U.Hset;
+        for(int k=1;k<=MaxDegree;k++){ // 计算
+            if(rest.isEmpty())break;
+            for(Vertex u:rest){
+                if(u.degree<k){
+                    if(!CoreNumber.containsKey(u)){
+                        CoreNumber.put(u,k-1);
+                        que.add(u);
+                        rest.remove(u);
+                    }
+                }
+            }
+            while(que.size()>0){
+                Vertex u=que.poll();
+                for(Vertex v:G.get(u).Hset){
+                    if(--vertices1[v.id].degree<k){
+                        que.add(v);
+                        rest.remove(v);
+                        if(!CoreNumber.containsKey(u)) {
+                            CoreNumber.put(u, k - 1);
+                        }
+                    }
+                }
+            }
 
-    return 0;
+        }
     }
-
+    void Init(){
+        DataReader();
+        CalDegree();
+        //CalAllCN();
+    }
     void DelFromG(Vertex v){//从图中删除
         Graph.remove(v);
         U.DelV(v);
         num--;
     }
 
-    void CalAllCN(){
 
-    }
 
 
 
