@@ -33,7 +33,7 @@ public SC_Enum(int q, int l, int h){
     G=new OriGraph(n);
     // input G
     Kmin=G.MinDregree;
-    Kmax=Math.min(G.cn(G.Id2Vex.get(q)),h-1);
+    Kmax=Math.min(G.CoreNumber.get(q),h-1);
     C=G.U;
     R=new VertexSet();
 }
@@ -42,7 +42,7 @@ public SC_Enum(int q, int l, int h){
         H=HH.H;
         if(Kmin<Kmax){
             for(Vertex v:G.U.Hset){
-                if(G.cn(v)<=Kmin){
+                if(G.CoreNumber.get(v)<=Kmin){
                     G.DelFromG(v); //
                 }
             }

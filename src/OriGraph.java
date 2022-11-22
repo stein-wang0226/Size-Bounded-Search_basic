@@ -48,7 +48,7 @@ public class OriGraph {
     Vertex [] vertices;
     VertexSet U;
 
-    HashMap <Integer,Vertex>Id2Vex;
+    //HashMap <Integer,Vertex>Id2Vex; // vertices[id]
     HashMap<Vertex, VertexSet> Graph;
     HashMap<Vertex,Integer>CoreNumber; // cn[q]的值
     public OriGraph(int n) {
