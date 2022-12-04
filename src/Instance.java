@@ -1,12 +1,10 @@
 public class Instance {
     OriGraph G;
     VertexSet C,R;
-    int [][]dist;
     public  Instance(OriGraph G,VertexSet C,VertexSet R){
         this.G=G;
         this.C=C;
         this.R=R;
-        dist= new int[G.num+5][G.num+5];
     }
 //    int CalDegreeC(Vertex u){
 //        int cnt=0;

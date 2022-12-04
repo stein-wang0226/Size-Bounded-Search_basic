@@ -12,7 +12,7 @@ public class SC_Enum {
     HashMap<Integer,Vertex>Id2Vetx; // 编号映射
 public SC_Enum(int q, int l, int h){
     // input n
-    G=new OriGraph(n);
+    G=new OriGraph();
     // input G
     G.DataReader();
 

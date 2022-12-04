@@ -1,25 +1,24 @@
 import java.util.*;
 public class OriGraph {
-    Integer num;
     int MinDegree,MaxDegree;// 图中最大/小度数
     HashSet<Vertex> vertices ;// 存点
     //HashMap <Integer,Vertex>Id2Vex;
     HashMap<Integer, VertexSet> Graph;
     HashMap<Integer,Integer>CoreNumber; // cn[q]的值
     public OriGraph(int n) {
-        num = n;
         vertices = new HashSet<>(n);
         Graph = new HashMap<>();
     }
     public OriGraph() {
-        num = 0;
         vertices =  new HashSet<>();
         Graph = new HashMap<>();
     }
     public OriGraph(OriGraph G) {
-        num = G.num;
         vertices = G.vertices;
         Graph = new HashMap<>(G.Graph);
+        this.MinDegree= G.MinDegree;
+        this.MaxDegree=G.MaxDegree;
+        this.CoreNumber=G.CoreNumber;
     }
     void DataReader(){
         //input
@@ -34,7 +33,7 @@ public class OriGraph {
         }
     }
     void CalAllCN(){ // 计算所有k-core
-      //  Vertex [] vertices1 = vertices;
+
         HashMap<Integer , VertexSet>G=Graph;
         Queue<Vertex>que= new LinkedList<>() ;//
         //剩余点
@@ -43,7 +42,7 @@ public class OriGraph {
             if(rest.isEmpty())break;
             for(Vertex u:rest){
                 if(u.degree<k){
-                    if(!CoreNumber.containsKey(u)){
+                    if(!CoreNumber.containsKey(u.id)){
                         CoreNumber.put(u.id,k-1);
                         que.add(u);
                         rest.remove(u);
@@ -52,11 +51,11 @@ public class OriGraph {
             }
             while(que.size()>0){
                 Vertex u=que.poll();
-                for(Vertex v:G.get(u).Hset){
+                for(Vertex v:G.get(u.id).Hset){
                     if(--v.degree<k){
                         que.add(v);
                         rest.remove(v);
-                        if(!CoreNumber.containsKey(u)) {
+                        if(!CoreNumber.containsKey(u.id)) {
                             CoreNumber.put(u.id, k - 1);
                         }
                     }
@@ -67,7 +66,6 @@ public class OriGraph {
     }
     void DelFromG(Vertex u){//从图中删除 O(nlogn)
         Graph.remove(u.id);
-        num--;
         for(Vertex v:vertices){//
             Graph.get(v.id).DelAll(v);
         }
