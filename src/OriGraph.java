@@ -5,10 +5,6 @@ public class OriGraph {
     //HashMap <Integer,Vertex>Id2Vex;
     HashMap<Integer, VertexSet> Graph;
     HashMap<Integer,Integer>CoreNumber; // cn[q]的值
-    public OriGraph(int n) {
-        vertices = new HashSet<>(n);
-        Graph = new HashMap<>();
-    }
     public OriGraph() {
         vertices =  new HashSet<>();
         Graph = new HashMap<>();
